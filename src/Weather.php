@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of the ZeroXGod/weather.
+ *
+ * (c) ZeroXGod <s812419396@gmail.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
+
 namespace Zerocoder\Weather;
 
 use GuzzleHttp\Client;
@@ -9,6 +18,7 @@ use Zerocoder\Weather\Exceptions\InvalidArgumentException;
 class Weather
 {
     protected $key;
+
     protected $guzzleOptions = [];
 
     public function __construct($key)
@@ -26,10 +36,9 @@ class Weather
         $this->guzzleOptions = $options;
     }
 
-    public function getWeather($city,$type = 'base',$format = 'json')
+    public function getWeather($city, $type = 'base', $format = 'json')
     {
         $url = 'https://restapi.amap.com/v3/weather/weatherInfo';
-
 
         if (!\in_array(\strtolower($format), ['xml', 'json'])) {
             throw new InvalidArgumentException('Invalid response format: '.$format);
@@ -55,7 +64,6 @@ class Weather
         } catch (\Exception $e) {
             throw new HttpException($e->getMessage(), $e->getCode(), $e);
         }
-
     }
 
     public function getLiveWeather($city, $format = 'json')
