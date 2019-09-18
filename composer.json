@@ -1,0 +1,28 @@
+{
+    "name": "zerocoder\/weather",
+    "description": "A weather SDK",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "ZeroXGod",
+            "email": "s812419396@gmail.com"
+        }
+    ],
+    "require": {
+        "guzzlehttp/guzzle": "^6.3",
+        "phpunit/phpunit": "^8.3",
+        "mockery/mockery": "^1.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "Zerocoder\\Weather\\": "src"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Zerocoder\\Weather\\ServiceProvider"
+            ]
+        }
+    }
+}
