@@ -55,6 +55,7 @@ class Weather
         } catch (\Exception $e) {
             throw new HttpException($e->getMessage(), $e->getCode(), $e);
         }
+
     }
 
     public function getLiveWeather($city, $format = 'json')
