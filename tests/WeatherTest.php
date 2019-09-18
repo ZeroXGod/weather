@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of the ZeroXGod/weather.
+ *
+ * (c) ZeroXGod <s812419396@gmail.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
+
 namespace Zerocoder\Weather\Tests;
 
 use GuzzleHttp\Client;
@@ -45,8 +54,6 @@ class WeatherTest extends TestCase
 
         // 如果因为抛出异常，就会运行到这行，标记当前测试没有成功
         $this->fail('Failed to assert getWeather throw exception with invalid argument.');
-
-
     }
 
     public function testGetWeather()
@@ -65,7 +72,7 @@ class WeatherTest extends TestCase
                 'city' => '深圳',
                 'output' => 'json',
                 'extensions' => 'base',
-            ]
+            ],
         ])->andReturn($response);
 
         // 将 'getHttpClient' 方法替换为上面创建的 http client 为返回值的模拟方法。
@@ -74,7 +81,6 @@ class WeatherTest extends TestCase
 
         // 然后调用 `getWeather` 方法，并断言返回值为模拟的返回值。
         $this->assertSame(['success' => true], $w->getWeather('深圳'));
-
 
         // xml
         $response = new Response(200, [], '<hello>content</hello>');
@@ -93,7 +99,6 @@ class WeatherTest extends TestCase
 
         $this->assertSame('<hello>content</hello>', $w->getWeather('深圳', 'all', 'xml'));
     }
-
 
     public function testGetWeatherWithGuzzleRuntimeException()
     {
